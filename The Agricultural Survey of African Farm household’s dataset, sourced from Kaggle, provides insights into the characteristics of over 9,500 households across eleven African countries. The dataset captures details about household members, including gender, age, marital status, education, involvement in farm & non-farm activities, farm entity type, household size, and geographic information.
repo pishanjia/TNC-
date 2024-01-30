@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+path=('/Users/Gito/Desktop/Ben/data.csv')
+df=pd.read_csv(path)
+df.head()
+df.tail()
+print(df.columns)
+hh_summary=df['hhsize'].describe()
+print(hh_summary)
+age_summary=df['age1'].describe()
+print(age_summary)
+summary=df[['age1','hhsize','educ1']].describe()
+print (summary)
+missing_values=df.isnull().sum()
+df_dropna=df.dropna()
+df.fillna=df.fillna(0)
+print(df.fillna)
+total_households=len(df)
+print(total_households)
+
+households_with_both = len(df[(df['farmwork1'] == 'Yes') & (df['nfarmwork1'] == 'Yes')])
+probability = households_with_both / total_households
+expected_households = probability * total_households
+
+print("Probability of a household having at least one member engaged in both farm and non-farm activities:", probability)
+print("Expected number of households meeting this criterion:", expected_households)
+total_households=100
+households_with_both = len(df[(df['farmwork1'] == 'Yes') & (df['nfarmwork1'] == 'Yes')])
+probability = households_with_both / total_households
+expected_households = probability * total_households
+
+print("Probability of a household having at least one member engaged in both farm and non-farm activities:", probability)
+print("Expected number of households meeting this criterion:", expected_households)
+
+
+sns.histplot(x='hhsize',data=df)  
+plt.title('hhsize  Histogram') 
+plt.xlabel('X-axis Label')
+plt.ylabel('Y-axis Label')
+plt.show()
+
+sns.histplot(x='educ1',data=df)  
+plt.title('educ1 Histogram') 
+plt.xlabel('X-axis Label')
+plt.ylabel('Y-axis Label')
+plt.show()
